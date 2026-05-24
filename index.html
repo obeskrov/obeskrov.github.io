@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>obeskrov</title>
+
+  <style>
+    @font-face {
+      font-family: 'Gallant';
+      src: url('assets/fonts/Gallant-Regular.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #fff;
+      color: #111;
+      font-family: Georgia, serif;
+    }
+
+    .wrap {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      max-width: 920px;
+      margin: 0 auto;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      padding: 3rem 1.5rem 3rem 2rem;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .nav-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nav-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #ccc;
+      margin-bottom: 0.5rem;
+    }
+
+    .nav-link {
+      font-size: 0.8rem;
+      color: #aaa;
+      text-decoration: none;
+      cursor: pointer;
+      line-height: 2.1;
+      display: block;
+      font-family: Georgia, serif;
+    }
+
+    .nav-link:hover {
+      color: #111;
+    }
+
+    .tree {
+      list-style: none;
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      line-height: 1.9;
+      display: none;
+    }
+
+    .tree.open {
+      display: block;
+    }
+
+    .tree li {
+      color: #ddd;
+    }
+
+    .tree li span {
+      color: #bbb;
+      cursor: pointer;
+    }
+
+    .tree li span:hover {
+      color: #111;
+    }
+
+    .main {
+      padding: 3rem 3rem 4rem 4rem;
+      border-left: 1px solid #f0f0f0;
+      max-width: 580px;
+    }
+
+    .hero {
+      margin-bottom: 2.2rem;
+    }
+
+    h1 {
+      font-family: 'Gallant', Georgia, serif;
+      font-size: 6.5rem;
+      font-weight: normal;
+      letter-spacing: -0.05em;
+      line-height: 0.88;
+      color: #111;
+      margin-bottom: 1.2rem;
+    }
+
+    .tagline {
+      font-size: 0.7rem;
+      color: #ccc;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.35rem;
+    }
+
+    .lede {
+      font-size: 0.82rem;
+      color: #bbb;
+      font-style: italic;
+      font-family: Georgia, serif;
+    }
+
+    .section {
+      margin-bottom: 3.5rem;
+    }
+
+    .section-label {
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #ccc;
+      display: block;
+      margin-bottom: 1.1rem;
+    }
+
+    .body-text {
+      font-size: 0.84rem;
+      color: #555;
+      line-height: 1.85;
+    }
+
+    .body-text p {
+      margin-bottom: 0.7rem;
+    }
+
+    .body-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .interests {
+      padding-left: 1rem;
+      margin: 0;
+    }
+
+    .interests li {
+      font-size: 0.83rem;
+      color: #777;
+      line-height: 1.7;
+      margin-bottom: 0.5rem;
+    }
+
+    .interests li b {
+      color: #000;
+    }
+
+    #wip {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: #fff;
+      z-index: 99;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #wip.open {
+      display: flex;
+    }
+
+    #wip span {
+      font-family: 'Gallant', Georgia, serif;
+      font-size: 1rem;
+      color: #bbb;
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <aside class="sidebar">
+    <div class="nav-group">
+      <span class="nav-label">pages</span>
+
+      <span class="nav-link" onclick="toggleTree('t-gallery')">gallery</span>
+      <ul class="tree" id="t-gallery">
+        <li>├── <span onclick="wip()">arts/drawings</span></li>
+        <li>└── <span onclick="wip()">photos</span></li>
+      </ul>
+
+      <span class="nav-link" onclick="toggleTree('t-projects')">projects</span>
+      <ul class="tree" id="t-projects">
+        <li>├── <span onclick="wip()">archive</span></li>
+        <li>├── <span onclick="wip()">tools</span></li>
+        <li>└── <span onclick="wip()">experiments</span></li>
+      </ul>
+    </div>
+
+    <div class="nav-group">
+      <span class="nav-label">find me on</span>
+      <a class="nav-link" href="https://github.com/obeskrov" target="_blank" rel="noopener">github</a>
+      <a class="nav-link" href="https://instagram.com/obeskrov/" target="_blank" rel="noopener">instagram</a>
+      <a class="nav-link" href="https://tiktok.com/@0krvv" target="_blank" rel="noopener">tiktok</a>
+      <a class="nav-link" href="https://discord.com/users/944982637754318928" target="_blank" rel="noopener">discord</a>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <div class="hero">
+      <h1>Obeskrov</h1>
+      <p class="tagline">coffee / sleepless nights / edgy teen / digital clutter</p>
+      <p class="lede">— i have no personality &amp; i must LARP.</p>
+    </div>
+
+    <div class="section">
+      <span class="section-label">about</span>
+
+      <div class="body-text">
+        <p>My name is Obeskrov (the name I use on). I'm 15 years old and I live in Brazil.</p>
+
+        <p>I'm a student, front-end developer, and UI/UX designer. I build interfaces and often get lost in details nobody asked to exist. I start projects on impulse, get obsessed for a while, and then drop them when another idea shows up and feels more interesting.</p>
+
+        <p>I care more about feeling than whether something "works properly." I keep thinking about how color, movement, text, and even empty space completely change the way someone experiences an interface. To me, an interface isn't just a screen — it's almost a reflection of the person who made it. Design has never felt like decoration; it's always felt like a messy mix of psychology, identity, and sensation.</p>
+
+        <p>I also absolutely hate math.</p>
+
+        <p>I like coffee, music, anime, movies, series, reading random stuff, and writing late at night when my mind just won't shut off. I'm drawn to things with atmosphere — slightly melancholic, cold in mood, hard to explain but easy to feel.</p>
+
+        <p>I like UNIX-like systems, like Linux. And that's kind of contradictory: I hate having to control everything… but I also love it. Like when I break my system at 3 a.m. because of a questionable decision and still only go to sleep afterward, like nothing happened.</p>
+
+        <p>Sometimes I get stuck in an idea for hours because it just feels right in my head. Other times I just tear everything down and change direction without thinking too much.</p>
+
+        <p>I'm also into visual arts, photography, theater, stage direction, symbolism, and things that manage to transmit feeling without needing explanation. I almost never study in a traditional way. I only go deep into things when I feel like it, until I get bored, and then I drop half of it and move on like it's normal.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <span class="section-label">some things I'm interested in</span>
+
+      <ul class="interests">
+        <li><b>Psychology &amp; philosophy</b> — emotion, identity, and how people create meaning through contradiction and uncertainty.</li>
+
+        <li><b>Personal work</b> — writing, drawing, reading, and deep study.</li>
+
+        <li><b>Human development [0–14]</b> — how behavior forms during childhood and shapes perception, emotion, and identity.</li>
+
+        <li><b>Digital aesthetics &amp; interfaces</b> — minimal, intentional, and expressive systems.</li>
+
+        <li><b>Learning deeply</b> — understanding ideas until their structures become visible.</li>
+      </ul>
+    </div>
+
+  </main>
+</div>
+
+<div id="wip" onclick="closeWip()">
+  <span>nothing here. for now.</span>
+</div>
+
+<script>
+  function toggleTree(id) {
+    document.getElementById(id).classList.toggle('open');
+  }
+
+  function wip() {
+    document.getElementById('wip').classList.add('open');
+  }
+
+  function closeWip() {
+    document.getElementById('wip').classList.remove('open');
+  }
+</script>
+
+</body>
+</html>
